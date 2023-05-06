@@ -179,14 +179,26 @@ namespace Chatbot
 
         static void CheckGameOver()
         {
-            if (board[0] == board[1] && board[1] == board[2] ||
-                board[3] == board[4] && board[4] == board[5] ||
-                board[6] == board[7] && board[7] == board[8] ||
-                board[0] == board[3] && board[3] == board[6] ||
-                board[1] == board[4] && board[4] == board[7] ||
-                board[2] == board[5] && board[5] == board[8] ||
-                board[0] == board[4] && board[4] == board[8] ||
-                board[2] == board[4] && board[4] == board[6])
+            if ((board[0] == board[1] && board[1] == board[2] && board[0] == 'X')||
+                (board[3] == board[4] && board[4] == board[5] && board[3] == 'X')||
+                (board[6] == board[7] && board[7] == board[8] && board[6] == 'X')||
+                (board[0] == board[3] && board[3] == board[6] && board[0] == 'X')||
+                (board[1] == board[4] && board[4] == board[7] && board[1] == 'X')||
+                (board[2] == board[5] && board[5] == board[8] && board[2] == 'X')||
+                (board[0] == board[4] && board[4] == board[8] && board[0] == 'X')||
+                (board[2] == board[4] && board[4] == board[6] && board[2] == 'X'))
+            {
+                gameOver = true;
+                output(name + " wins!");
+            }
+            else if((board[0] == board[1] && board[1] == board[2] && board[0] == 'o')||
+                    (board[3] == board[4] && board[4] == board[5] && board[3] == 'o')||
+                    (board[6] == board[7] && board[7] == board[8] && board[6] == 'o')||
+                    (board[0] == board[3] && board[3] == board[6] && board[0] == 'o')||
+                    (board[1] == board[4] && board[4] == board[7] && board[1] == 'o')||
+                    (board[2] == board[5] && board[5] == board[8] && board[2] == 'o')||
+                    (board[0] == board[4] && board[4] == board[8] && board[0] == 'o')||
+                    (board[2] == board[4] && board[4] == board[6] && board[2] == 'o'))
             {
                 gameOver = true;
             }
@@ -196,10 +208,6 @@ namespace Chatbot
             board = new char[9] { '1', '2', '3', '4', '5', '6', '7', '8', '9' };
             player = 'X';
             gameOver = false;
-
-            PrintBoard();
-            Play();
-            CheckGameOver();
 
             while (!gameOver)
             {
