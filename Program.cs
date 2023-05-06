@@ -415,14 +415,13 @@ namespace Chatbot
                                "Wait? What`s wrong with you? Pro tips! This country has a lot of languages.",
                                "Gosh, how can you forget about a country with a lot of religions."};
             
-            string[] indonesia = { "",
-                               "",
-                               "",
-                               ""};
-
+            string[] indonesia = { "Remebered, the country is located in southeast Asia.",
+                               "Emmm, actually this country has a lot of islands.",
+                               "Hey, don`t give up! This country has a lot of volcanoes.",
+                               "Okay, okay, try to come up a country near Malaysia."};
 
             narrator("Welcome to the Guess the Country Game!");
-            output("Okay~ First, I gonna think of a country.Remember, it is a country name, not a city name.");
+            output("Okay~ First, I gonna think of a country. Remember, it is a country name, not a city name.");
             for (int i = 0; i < 3; i++)
             {
                 Thread.Sleep(400);
@@ -430,29 +429,47 @@ namespace Chatbot
             }
             output("I am done with a country now~ Can you guess it? I will give you 5 chances!");
 
-            Console.WriteLine("I'm thinking of a country. Can you guess which one it is?");
-            Console.WriteLine("Let's find out!");
-
             while (!isCorrect && attempts < 5)
             {
-                Console.Write("Enter your guess: ");
-                guess = Console.ReadLine();
+                Console.Write("Enter your guess(full name and lowercase)");
+                guess = input();
                 attempts++;
 
                 if (guess.Equals(target, StringComparison.OrdinalIgnoreCase))
                 {
-                    Console.WriteLine($"Congratulations! You guessed it right. It's {target}!");
+                    narrator($"Congratulations! You guessed it right. It's {target}!");
                     isCorrect = true;
                 }
                 else
                 {
-                    Console.WriteLine("Wrong guess! Try again.");
+                    if(target == "china"){
+                        output(china[attempts-1]);
+                    }else if(target == "malaysia"){
+                        output(malaysia[attempts-1]);
+                    }else if(target == "india"){
+                        output(india[attempts-1]);
+                    }else{
+                        output(indonesia[attempts-1]);
+                    }
                 }
             }
 
-            Console.WriteLine($"You guessed the country in {attempts} attempts.");
-            Console.WriteLine("Thank you for playing the Guess the Country Game!");
-            Console.ReadLine();
+            if(!isCorrect){
+               narrator($"Sorry, you failed to guess the country in 5 attempts. The country was {target}."); 
+               String[] tmp = {
+                "Ops, I forgot to tell you that I am good at guessing country!",
+                "Don`t be upset! I only give you 5 chances!",
+                "Emmmm, you could do it better for the next time!"
+               };
+               output(tmp[rnd.Next(0, tmp.Length)]);
+            }else{
+                String[] tmp = {
+                    "How can this happen! You are so lucky!",
+                    "Wait, are you a mind reader？",
+                    "Are you the roundworm in my stomach?"
+                };
+                output(tmp[rnd.Next(0, tmp.Length)]);
+            }
         }
 
         static void pickGames(){
