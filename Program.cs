@@ -431,7 +431,7 @@ namespace Chatbot
 
             while (!isCorrect && attempts < 5)
             {
-                Console.Write("Enter your guess(full name and lowercase)");
+                output("Enter your guess(full name and lowercase)");
                 guess = input();
                 attempts++;
 
@@ -457,16 +457,15 @@ namespace Chatbot
             if(!isCorrect){
                narrator($"Sorry, you failed to guess the country in 5 attempts. The country was {target}."); 
                String[] tmp = {
-                "Ops, I forgot to tell you that I am good at guessing country!",
-                "Don`t be upset! I only give you 5 chances!",
-                "Emmmm, you could do it better for the next time!"
+                "I am a country guesser! How can you beat me!",
+                "So show me your talent! Learn more before come to me! Haha!",
+                "You should try harder in other games! I am not gonna give you a second chance!"
                };
                output(tmp[rnd.Next(0, tmp.Length)]);
             }else{
                 String[] tmp = {
-                    "How can this happen! You are so lucky!",
-                    "Wait, are you a mind reader？",
-                    "Are you the roundworm in my stomach?"
+                    "Wow, are you a geography master?",
+                    "Well done! You are way more better than I thought!"
                 };
                 output(tmp[rnd.Next(0, tmp.Length)]);
             }
