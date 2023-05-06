@@ -316,7 +316,6 @@ namespace Chatbot
  
 
             output("Well, Another game?");
-            output(input().Contains("y") ? "How about guess number! I am good at it~~" : "Hey, come on! You gonna play with me anyway!");
         }
 
         //guess number
@@ -376,11 +375,33 @@ namespace Chatbot
 
             if(!isCorrect){
                narrator($"Sorry, you failed to guess the number in 5 attempts. The number was {target}."); 
-            } 
+               String[] tmp = {
+                "Ops, I forgot to tell you that I am good at guessing number!",
+                "Don`t be upset! I only give you 5 chances!",
+                "Emmmm, you could do it better for the next time!"
+               };
+               output(tmp[rnd.Next(0, tmp.Length)]);
+            }else{
+                String[] tmp = {
+                    "How can this happen! You are so lucky!",
+                    "Wait, are you a mind reader？",
+                    "Are you the roundworm in my stomach?"
+                };
+                output(tmp[rnd.Next(0, tmp.Length)]);
+            }
+        }
+
+        static void guessCountry(){
+            
+        }
+
+        static void pickGames(){
+
         }
 
         static void Main(string[] args)
         {
+            String key;
             userInstruction();
             introTalk();
             input();
@@ -388,7 +409,16 @@ namespace Chatbot
             Thread.Sleep(80);
             //ttt();
             Thread.Sleep(120);
-            guessNum();
+            key = input().Contains("y") ? "How about guess number! I am good at it~~" : "Hey, come on! Tell me what you want to play!";
+            if(key == "Hey, come on! Tell me what you want to play!") pickGames();
+            else guessNum();
+            //guessNum();
+            Thread.Sleep(120);
+            output("Okay, I am done with guessing number. Seems like you like the guessing. How about guess a country?");
+            key = input().Contains("y") ? "Okay, let`s start!" : "So tell me what you want to play!";
+            if(key == "So tell me what you want to play!") pickGames();
+            else guessCountry();
+            
         }
     }
 }
