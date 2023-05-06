@@ -150,23 +150,40 @@ namespace Chatbot
         static char player;
         static bool gameOver;
         static Random rnd = new Random();
+        static bool isFirst = true;
         static void PrintBoard()
         {
-            String[] fb = 
-                { 
-                    "It seems like this game has become an unsolvable \n" + 
-                    "\t enigma. Maybe it's time to summon a mysterious\n" +
-                    "\t master of the board to unravel it!" , 
-                    "The situation is getting increasingly complex. \n" + 
-                    "\t Are we playing a game of Tic-Tac-Toe or a puzzle \n" +
-                    "\t from the Three Kingdoms? I'm starting to wonder!" , 
-                    "The current state of this game resembles a face-off\n" +
-                    "\t between two goalkeepers. They're not giving each \n" + 
-                    "\t other any chance. Looks like we need a sharpshooter \n" +
-                    "\t to break this deadlock!" 
-                };
-                Random random = new Random();
-                narrator(fb[random.Next(0, fb.Length)]);
+            if(isFirst){
+                output("Have you ever heard of Tic-Tac-Toe!");
+                String tmp = input().Contains("ye") ? "Great! Let`s play this game now~~~\n\t Watch out baby~~ I am an expert in this field!" : "Don`t worry, you will learn it soon~~~";
+                output(tmp);
+                Thread.Sleep(120);
+                isFirst = false;
+                output("Well then, let`s start with the game~~~");
+                Thread.Sleep(100);
+                narrator("The Game is now beginning...");
+                Thread.Sleep(200);
+            }else if(gameOver){
+                narrator("The Game is over now...");
+                Thread.Sleep(200);
+            }
+            else{
+                String[] fb = 
+                    { 
+                        "It seems like this game has become an unsolvable \n" + 
+                        "\t enigma. Maybe it's time to summon a mysterious\n" +
+                        "\t master of the board to unravel it!" , 
+                        "The situation is getting increasingly complex. \n" + 
+                        "\t Are we playing a game of Tic-Tac-Toe or a puzzle \n" +
+                        "\t from the Three Kingdoms? I'm starting to wonder!" , 
+                        "The current state of this game resembles a face-off\n" +
+                        "\t between two goalkeepers. They're not giving each \n" + 
+                        "\t other any chance. Looks like we need a sharpshooter \n" +
+                        "\t to break this deadlock!" 
+                    };
+                    Random random = new Random();
+                    narrator(fb[random.Next(0, fb.Length)]);
+            }
 
             narrator("-------------");
             narrator($" {board[0]} | {board[1]} | {board[2]} ");
@@ -198,6 +215,32 @@ namespace Chatbot
                 move = rnd.Next(1, 10);
             } while (board[move - 1] == 'X' || board[move - 1] == 'o');
 
+            String[] fb = 
+                { 
+                    "Gosh....I'm so confused.", 
+                    "Oh wait...What's going on?", 
+                    "Playing this game with you is such a nightmare.",
+                    "Are you an expert in this game?"
+                };
+                Random random = new Random();
+                output(fb[random.Next(0, fb.Length)]);
+            
+            for (int i = 0; i < 3; i++)
+            {
+                Thread.Sleep(80);
+                output(".");
+            }
+            
+            String[] fb2 = 
+                { 
+                    "Hehe, I'm a genius!", 
+                    "You gonna lose! Sweety~~~", 
+                    "I'm the best Tic-Tac-Toe player in the world!",
+                    "Train more before come back to me!"
+                };
+                Random random2 = new Random();
+                output(fb2[random2.Next(0, fb2.Length)]);
+
             board[move - 1] = 'o';
         }
 
@@ -217,7 +260,13 @@ namespace Chatbot
                     {
                         gameOver = true;
                         if(temp == 'X') narrator(name + " wins!");
-                    }
+                    }else if (board[0] != '1' && board[1] != '2' && board[2] != '3' &&
+                                board[3] != '4' && board[4] != '5' && board[5] != '6' &&
+                                board[6] != '7' && board[7] != '8' && board[8] != '9')
+                            {
+                                gameOver = true;
+                                narrator("It's a tie! No one wins!");
+                            }
                 }
             }
         }
@@ -229,6 +278,7 @@ namespace Chatbot
 
             while (!gameOver)
             {
+                Thread.Sleep(100);
                 PrintBoard();
                 Play();
                 CheckGameOver();
@@ -236,13 +286,34 @@ namespace Chatbot
 
             PrintBoard();
 
+            output("WHAT!!!!!!!");
+            Thread.Sleep(200);
+            String[] tmp = {
+                "I can`t believe it! You beat me! unbelievable!",
+                "Hey hey hey, you are cheating! I am the expert in this field!",
+                "Am I drunk? How can I lose to you?",
+                "I am not in the mood to play with you anymore!"
+            };
+            output(tmp[rnd.Next(0, tmp.Length)]);
+
+            output("Well, Another game?");
+            output(input().Contains("y") ? "How about guess number! I am good at it~~" : "Hey, come on! You gonna play with me anyway!");
+        }
+
+        //guess number
+        static void guessNum(){
+            
         }
 
         static void Main(string[] args)
         {
             userInstruction();
             introTalk();
+            input();
+            output("Oh, wait. I am a little bit tired now. Let`s play a game to relax ourselves!");
+            Thread.Sleep(80);
             ttt();
+            Thread.Sleep(120);
         }
     }
 }
