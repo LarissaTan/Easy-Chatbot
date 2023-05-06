@@ -476,16 +476,21 @@ namespace Chatbot
 
         static void pickGames(){
             string[] games = { "guess number", "guess country", "tic tac toe"};
-            string temp = input();
-            if(temp.Contains("number")){
-                guessNum();
-            }else if(temp.Contains("country")){
-                guessCountry();
-            }else if(temp.Contains("tic tac toe")){
-                ttt();
-            }else{
-                output("Sorry, I don`t know this game. I only know about guess number, guess country and tic tac toe.");
-                pickGames();
+            switch (input().ToLower())
+            {
+                case string s when s.Contains("number"):
+                    guessNum();
+                    break;
+                case string s when s.Contains("country"):
+                    guessCountry();
+                    break;
+                case string s when s.Contains("tic tac toe"):
+                    ttt();
+                    break;
+                default:
+                    output("Sorry, I don't know this game. I only know about guess number, guess country, and tic tac toe.");
+                    pickGames();
+                    break;
             }
         }
 
