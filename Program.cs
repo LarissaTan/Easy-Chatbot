@@ -10,7 +10,7 @@ namespace Chatbot
     class Program
     {
        //some basic information get from user
-        static string? name;
+        static string name = "You";
         static string? age;
 
         //output format for chatbot
@@ -89,7 +89,7 @@ namespace Chatbot
 
         static void Main(string[] args)
         {
-            
+            introTalk();
         }
     }
 }

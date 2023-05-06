@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/tanqianqian/Desktop/assi/assi.csproj",
-      "projectName": "assi",
-      "projectPath": "/Users/tanqianqian/Desktop/assi/assi.csproj",
+      "projectUniqueName": "/Users/tanqianqian/Documents/GitHub/Easy-Chatbot/Easy-Chatbot.csproj",
+      "projectName": "Easy-Chatbot",
+      "projectPath": "/Users/tanqianqian/Documents/GitHub/Easy-Chatbot/Easy-Chatbot.csproj",
       "packagesPath": "/Users/tanqianqian/.nuget/packages/",
-      "outputPath": "/Users/tanqianqian/Desktop/assi/obj/",
+      "outputPath": "/Users/tanqianqian/Documents/GitHub/Easy-Chatbot/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/tanqianqian/.nuget/NuGet/NuGet.Config"

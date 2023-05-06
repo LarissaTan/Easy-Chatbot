@@ -1,0 +1,15 @@
+/Users/tanqianqian/Documents/GitHub/Easy-Chatbot/bin/Debug/net6.0/Easy-Chatbot
+/Users/tanqianqian/Documents/GitHub/Easy-Chatbot/bin/Debug/net6.0/Easy-Chatbot.deps.json
+/Users/tanqianqian/Documents/GitHub/Easy-Chatbot/bin/Debug/net6.0/Easy-Chatbot.runtimeconfig.json
+/Users/tanqianqian/Documents/GitHub/Easy-Chatbot/bin/Debug/net6.0/Easy-Chatbot.dll
+/Users/tanqianqian/Documents/GitHub/Easy-Chatbot/bin/Debug/net6.0/Easy-Chatbot.pdb
+/Users/tanqianqian/Documents/GitHub/Easy-Chatbot/obj/Debug/net6.0/Easy-Chatbot.csproj.AssemblyReference.cache
+/Users/tanqianqian/Documents/GitHub/Easy-Chatbot/obj/Debug/net6.0/Easy-Chatbot.GeneratedMSBuildEditorConfig.editorconfig
+/Users/tanqianqian/Documents/GitHub/Easy-Chatbot/obj/Debug/net6.0/Easy-Chatbot.AssemblyInfoInputs.cache
+/Users/tanqianqian/Documents/GitHub/Easy-Chatbot/obj/Debug/net6.0/Easy-Chatbot.AssemblyInfo.cs
+/Users/tanqianqian/Documents/GitHub/Easy-Chatbot/obj/Debug/net6.0/Easy-Chatbot.csproj.CoreCompileInputs.cache
+/Users/tanqianqian/Documents/GitHub/Easy-Chatbot/obj/Debug/net6.0/Easy-Chatbot.dll
+/Users/tanqianqian/Documents/GitHub/Easy-Chatbot/obj/Debug/net6.0/refint/Easy-Chatbot.dll
+/Users/tanqianqian/Documents/GitHub/Easy-Chatbot/obj/Debug/net6.0/Easy-Chatbot.pdb
+/Users/tanqianqian/Documents/GitHub/Easy-Chatbot/obj/Debug/net6.0/Easy-Chatbot.genruntimeconfig.cache
+/Users/tanqianqian/Documents/GitHub/Easy-Chatbot/obj/Debug/net6.0/ref/Easy-Chatbot.dll
