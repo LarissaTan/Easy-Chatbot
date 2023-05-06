@@ -30,6 +30,17 @@ namespace Chatbot
             return Console.ReadLine().Trim().ToLower();
         }
 
+        //get digits from a string
+        static string getDigits(string str)
+        {
+            StringBuilder digits = new StringBuilder();
+            foreach (char c in str)
+            {
+                if (char.IsDigit(c))    digits.Append(c);
+            }   
+            return digits.ToString();
+        }
+
         //introduction
         static void introTalk()
         {
@@ -38,7 +49,9 @@ namespace Chatbot
             name = input();
             output("Nice to meet you " + name + ". That`s a really a nice name~~~");
             output(name + ", how old are you?");
+
             age = input();
+            age = getDigits(age);
             int ageInt = Convert.ToInt32(age);
 
             //give different feedback according to the age
