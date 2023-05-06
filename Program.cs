@@ -32,6 +32,14 @@ namespace Chatbot
             return tmp;
         }
 
+        //narrator format
+        static void narrator(string output)
+        {
+            //set the color of the narrator
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine("Narrator: " + output);
+        }
+
         //get digits from a string
         static string getDigits(string str)
         {
@@ -144,18 +152,34 @@ namespace Chatbot
         static Random rnd = new Random();
         static void PrintBoard()
         {
-            Console.WriteLine("-------------");
-            Console.WriteLine($" {board[0]} | {board[1]} | {board[2]} ");
-            Console.WriteLine("-------------");
-            Console.WriteLine($" {board[3]} | {board[4]} | {board[5]} ");
-            Console.WriteLine("-------------");
-            Console.WriteLine($" {board[6]} | {board[7]} | {board[8]} ");
-            Console.WriteLine("-------------");
+            String[] fb = 
+                { 
+                    "It seems like this game has become an unsolvable \n" + 
+                    "\t enigma. Maybe it's time to summon a mysterious\n" +
+                    "\t master of the board to unravel it!" , 
+                    "The situation is getting increasingly complex. \n" + 
+                    "\t Are we playing a game of Tic-Tac-Toe or a puzzle \n" +
+                    "\t from the Three Kingdoms? I'm starting to wonder!" , 
+                    "The current state of this game resembles a face-off\n" +
+                    "\t between two goalkeepers. They're not giving each \n" + 
+                    "\t other any chance. Looks like we need a sharpshooter \n" +
+                    "\t to break this deadlock!" 
+                };
+                Random random = new Random();
+                narrator(fb[random.Next(0, fb.Length)]);
+
+            narrator("-------------");
+            narrator($" {board[0]} | {board[1]} | {board[2]} ");
+            narrator("-------------");
+            narrator($" {board[3]} | {board[4]} | {board[5]} ");
+            narrator("-------------");
+            narrator($" {board[6]} | {board[7]} | {board[8]} ");
+            narrator("-------------");
         }
 
         static void Play()
         {
-            output(name + " enter your choice (1-9) here: ");
+            narrator(name + ", enter your choice (1-9) here: ");
             string p = getDigits(input());
             int move;
 
@@ -165,7 +189,7 @@ namespace Chatbot
             }
             else
             {
-                Console.WriteLine("Invalid move. Please try again.");
+                narrator("Ops! Invalid move. OMG!\n\t You should try again," + name +"!!");
                 Play();
             }
 
@@ -192,7 +216,7 @@ namespace Chatbot
                         (board[2] == board[4] && board[4] == board[6] && board[2] == temp))
                     {
                         gameOver = true;
-                        if(temp == 'X') output(name + " wins!");
+                        if(temp == 'X') narrator(name + " wins!");
                     }
                 }
             }
