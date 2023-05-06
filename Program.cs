@@ -321,7 +321,62 @@ namespace Chatbot
 
         //guess number
         static void guessNum(){
+            Random random = new Random();
+            int target = random.Next(1, 101);
+            int attempts = 0;
+            bool isCorrect = false;
 
+            narrator("Welcome to the Number Guessing Game!");
+            output("Okay~ Now, I'm thinking of a number between 1 and 100.");
+            //print a number for every 0.4s
+            for (int i = 0; i < 3; i++)
+            {
+                Thread.Sleep(400);
+                output(".");
+            }
+            output("I am done with a number now~ Can you guess it? I will give you 5 chances!");
+
+            while (!isCorrect && attempts < 5)
+            {
+                narrator("Enter your guess(1-100)");
+                string trial = getDigits(input());
+                if (int.TryParse(trial, out int guess))
+                {
+                    attempts++;
+
+                    if (guess < target)
+                    {
+                        String[] tmp = {
+                            "Oh, you are so close! But still too low!",
+                            "You are almost there! Try a bigger number!",
+                            "Come on! How can I guess a number so small!"
+                        };
+                        output(tmp[rnd.Next(0, tmp.Length)]);
+                    }
+                    else if (guess > target)
+                    {
+                        String[] tmp = {
+                            "Great, hahaha! Not that one! Try a smaller number!",
+                            "How can you guess such a big number!",
+                            "Hey! Hey! You! You! Wanna try a small one?"
+                        };
+                        output(tmp[rnd.Next(0, tmp.Length)]);
+                    }
+                    else
+                    {
+                        narrator($"Congratulations! You guessed it right in {attempts} attempts.");
+                        isCorrect = true;
+                    }
+                }
+                else
+                {
+                    narrator("Invalid input. Please enter a valid number.");
+                }
+            }
+
+            if(!isCorrect){
+               narrator($"Sorry, you failed to guess the number in 5 attempts. The number was {target}."); 
+            } 
         }
 
         static void Main(string[] args)
@@ -331,7 +386,7 @@ namespace Chatbot
             input();
             output("Oh, wait. I am a little bit tired now. Let`s play a game to relax ourselves!");
             Thread.Sleep(80);
-            ttt();
+            //ttt();
             Thread.Sleep(120);
             guessNum();
         }
