@@ -151,6 +151,7 @@ namespace Chatbot
         static bool gameOver;
         static Random rnd = new Random();
         static bool isFirst = true;
+        static bool isPwin = true;
         static void PrintBoard()
         {
             if(isFirst){
@@ -164,7 +165,6 @@ namespace Chatbot
                 narrator("The Game is now beginning...");
                 Thread.Sleep(200);
             }else if(gameOver){
-                narrator("The Game is over now...");
                 Thread.Sleep(200);
             }
             else{
@@ -210,38 +210,45 @@ namespace Chatbot
                 Play();
             }
 
-            do
-            {
-                move = rnd.Next(1, 10);
-            } while (board[move - 1] == 'X' || board[move - 1] == 'o');
+            CheckGameOver();
 
-            String[] fb = 
-                { 
-                    "Gosh....I'm so confused.", 
-                    "Oh wait...What's going on?", 
-                    "Playing this game with you is such a nightmare.",
-                    "Are you an expert in this game?"
-                };
+            if (gameOver){
+                narrator("The Game is over now...");
+            }
+            else{
+                do
+                {
+                    move = rnd.Next(1, 10);
+                } while (board[move - 1] == 'X' || board[move - 1] == 'o');
+
+                String[] fb = 
+                    { 
+                        "Gosh....I'm so confused.", 
+                        "Oh wait...What's going on?", 
+                        "Playing this game with you is such a nightmare.",
+                        "Are you an expert in this game?"
+                    };
                 Random random = new Random();
                 output(fb[random.Next(0, fb.Length)]);
-            
-            for (int i = 0; i < 3; i++)
-            {
-                Thread.Sleep(80);
-                output(".");
-            }
-            
-            String[] fb2 = 
-                { 
-                    "Hehe, I'm a genius!", 
-                    "You gonna lose! Sweety~~~", 
-                    "I'm the best Tic-Tac-Toe player in the world!",
-                    "Train more before come back to me!"
-                };
+                
+                for (int i = 0; i < 3; i++)
+                {
+                    Thread.Sleep(80);
+                    output(".");
+                }
+                
+                String[] fb2 = 
+                    { 
+                        "Hehe, I'm a genius!", 
+                        "You gonna lose! Sweety~~~", 
+                        "I'm the best Tic-Tac-Toe player in the world!",
+                        "Train more before come back to me!"
+                    };
                 Random random2 = new Random();
                 output(fb2[random2.Next(0, fb2.Length)]);
 
-            board[move - 1] = 'o';
+                board[move - 1] = 'o';
+            }
         }
 
         static void CheckGameOver()
@@ -260,13 +267,17 @@ namespace Chatbot
                     {
                         gameOver = true;
                         if(temp == 'X') narrator(name + " wins!");
+                        if(temp == 'o') {
+                            isPwin = false;
+                            narrator("Chatbot wins!");
+                        }
                     }else if (board[0] != '1' && board[1] != '2' && board[2] != '3' &&
                                 board[3] != '4' && board[4] != '5' && board[5] != '6' &&
-                                board[6] != '7' && board[7] != '8' && board[8] != '9')
-                            {
-                                gameOver = true;
-                                narrator("It's a tie! No one wins!");
-                            }
+                                board[6] != '7' && board[7] != '8' && board[8] != '9'){
+                                    gameOver = true;
+                                    isPwin = false;
+                                    if(!gameOver) narrator("It's a tie! No one wins!");
+                                }
                 }
             }
         }
@@ -281,20 +292,28 @@ namespace Chatbot
                 Thread.Sleep(100);
                 PrintBoard();
                 Play();
-                CheckGameOver();
+                if(!gameOver) CheckGameOver();
             }
 
             PrintBoard();
-
-            output("WHAT!!!!!!!");
-            Thread.Sleep(200);
-            String[] tmp = {
-                "I can`t believe it! You beat me! unbelievable!",
-                "Hey hey hey, you are cheating! I am the expert in this field!",
-                "Am I drunk? How can I lose to you?",
-                "I am not in the mood to play with you anymore!"
-            };
-            output(tmp[rnd.Next(0, tmp.Length)]);
+            if(isPwin){
+                output("WHAT!!!!!!!");
+                Thread.Sleep(200);
+                String[] tmp = {
+                    "I can`t believe it! You beat me! unbelievable!",
+                    "Hey hey hey, you are cheating! I am the expert in this field!",
+                    "Am I drunk? How can I lose to you?",
+                    "I am not in the mood to play with you anymore!"
+                };
+                output(tmp[rnd.Next(0, tmp.Length)]);
+            }else{
+                String[] tmp = {
+                    "Don`t be so sad. It is just a game!",
+                    "I am the best! I am the best! I am the best!",
+                };
+                output(tmp[rnd.Next(0, tmp.Length)]);
+            }
+ 
 
             output("Well, Another game?");
             output(input().Contains("y") ? "How about guess number! I am good at it~~" : "Hey, come on! You gonna play with me anyway!");
@@ -302,7 +321,7 @@ namespace Chatbot
 
         //guess number
         static void guessNum(){
-            
+
         }
 
         static void Main(string[] args)
@@ -314,6 +333,7 @@ namespace Chatbot
             Thread.Sleep(80);
             ttt();
             Thread.Sleep(120);
+            guessNum();
         }
     }
 }
