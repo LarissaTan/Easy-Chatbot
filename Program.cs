@@ -512,8 +512,7 @@ namespace Chatbot
             output("Okay, I am done with guessing number. Seems like you like the guessing. How about guess a country?");
             key = input().Contains("y") ? "Okay, let`s start!" : "So tell me what you want to play!";
             if(key == "So tell me what you want to play!") pickGames();
-            else guessCountry();
-            
+            else guessCountry();  
         }
     }
 }
