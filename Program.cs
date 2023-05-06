@@ -27,7 +27,9 @@ namespace Chatbot
             //set the color of the input
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.Write(name + ": ");
-            return Console.ReadLine().Trim().ToLower();
+            String tmp = Console.ReadLine().Trim().ToLower();
+            if(tmp == "quit")   Environment.Exit(0);
+            return tmp;
         }
 
         //get digits from a string
@@ -125,10 +127,96 @@ namespace Chatbot
                 output(feedback[random.Next(0, feedback.Length)]);
             }
         }
+        
+        //user instruction
+        static void userInstruction(){
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("------------------------- Instruction -------------------------\n" +
+                              "\t1. Enter 'quit' to quit the chat.\n" +
+                              "\t2. Try to use some keywords for better communication.\n" +
+                              "---------------------------------------------------------------\n");
+        }
+
+        //Tic-Tac-Toe game
+        static char[] board;
+        static char player;
+        static bool gameOver;
+        static Random rnd = new Random();
+        static void PrintBoard()
+        {
+            Console.WriteLine("-------------");
+            Console.WriteLine($" {board[0]} | {board[1]} | {board[2]} ");
+            Console.WriteLine("-------------");
+            Console.WriteLine($" {board[3]} | {board[4]} | {board[5]} ");
+            Console.WriteLine("-------------");
+            Console.WriteLine($" {board[6]} | {board[7]} | {board[8]} ");
+            Console.WriteLine("-------------");
+        }
+
+        static void Play()
+        {
+            output(name + " enter your choice (1-9) here: ");
+            string p = getDigits(input());
+            int move;
+
+            if (int.TryParse(p, out move) && move >= 1 && move <= 9 && board[move - 1] != 'X' && board[move - 1] != 'o')
+            {
+                board[move - 1] = player;
+            }
+            else
+            {
+                Console.WriteLine("Invalid move. Please try again.");
+                Play();
+            }
+
+            do
+            {
+                move = rnd.Next(1, 10);
+            } while (board[move - 1] == 'X' || board[move - 1] == 'o');
+
+            board[move - 1] = 'o';
+        }
+
+        static void CheckGameOver()
+        {
+            if (board[0] == board[1] && board[1] == board[2] ||
+                board[3] == board[4] && board[4] == board[5] ||
+                board[6] == board[7] && board[7] == board[8] ||
+                board[0] == board[3] && board[3] == board[6] ||
+                board[1] == board[4] && board[4] == board[7] ||
+                board[2] == board[5] && board[5] == board[8] ||
+                board[0] == board[4] && board[4] == board[8] ||
+                board[2] == board[4] && board[4] == board[6])
+            {
+                gameOver = true;
+            }
+        }
+
+        static void ttt(){
+            board = new char[9] { '1', '2', '3', '4', '5', '6', '7', '8', '9' };
+            player = 'X';
+            gameOver = false;
+
+            PrintBoard();
+            Play();
+            CheckGameOver();
+
+            while (!gameOver)
+            {
+                PrintBoard();
+                Play();
+                CheckGameOver();
+            }
+
+            PrintBoard();
+
+        }
 
         static void Main(string[] args)
         {
+            userInstruction();
             introTalk();
+            ttt();
         }
     }
 }
