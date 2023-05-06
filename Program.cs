@@ -28,7 +28,10 @@ namespace Chatbot
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.Write(name + ": ");
             String tmp = Console.ReadLine().Trim().ToLower();
-            if(tmp == "quit")   Environment.Exit(0);
+            if(tmp == "quit") {
+                output("Bye~~~");
+                Environment.Exit(0);
+            }  
             return tmp;
         }
 
@@ -271,12 +274,12 @@ namespace Chatbot
                             isPwin = false;
                             narrator("Chatbot wins!");
                         }
-                    }else if (board[0] != '1' && board[1] != '2' && board[2] != '3' &&
+                    }else if ((board[0] != '1' && board[1] != '2' && board[2] != '3' &&
                                 board[3] != '4' && board[4] != '5' && board[5] != '6' &&
-                                board[6] != '7' && board[7] != '8' && board[8] != '9'){
+                                board[6] != '7' && board[7] != '8' && board[8] != '9') && !gameOver){
                                     gameOver = true;
                                     isPwin = false;
-                                    if(!gameOver) narrator("It's a tie! No one wins!");
+                                    narrator("It's a tie! No one wins!");
                                 }
                 }
             }
@@ -472,7 +475,18 @@ namespace Chatbot
         }
 
         static void pickGames(){
-
+            string[] games = { "guess number", "guess country", "tic tac toe"};
+            string temp = input();
+            if(temp.Contains("number")){
+                guessNum();
+            }else if(temp.Contains("country")){
+                guessCountry();
+            }else if(temp.Contains("tic tac toe")){
+                ttt();
+            }else{
+                output("Sorry, I don`t know this game. I only know about guess number, guess country and tic tac toe.");
+                pickGames();
+            }
         }
 
         static void Main(string[] args)
@@ -483,12 +497,12 @@ namespace Chatbot
             input();
             output("Oh, wait. I am a little bit tired now. Let`s play a game to relax ourselves!");
             Thread.Sleep(80);
-            //ttt();
+            ttt();
             Thread.Sleep(120);
             key = input().Contains("y") ? "How about guess number! I am good at it~~" : "Hey, come on! Tell me what you want to play!";
+            output(key);
             if(key == "Hey, come on! Tell me what you want to play!") pickGames();
             else guessNum();
-            //guessNum();
             Thread.Sleep(120);
             output("Okay, I am done with guessing number. Seems like you like the guessing. How about guess a country?");
             key = input().Contains("y") ? "Okay, let`s start!" : "So tell me what you want to play!";
