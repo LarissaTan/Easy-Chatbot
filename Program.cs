@@ -494,12 +494,57 @@ namespace Chatbot
             }
         }
 
+        //calculate the basic calculation
+        static void calculate(){
+            output("what  type of calculation do you want to do? (addition, subtraction, multiplication, division)");
+            string type = input();
+            switch(type){
+                case string s when s.Contains("add"):
+                    output("Got it! Now can you give me the first number?");
+                    int num1 = Convert.ToInt32(getDigits(input()));
+                    output("Okay, how about the second number?");
+                    int num2 = Convert.ToInt32(getDigits(input()));
+                    output($"emmm, I believe the answer is {num1 + num2} !!!");
+                    break;
+                
+                case string s when s.Contains("sub"):
+                    output("Let`s do it! Give me a number in your mind!");
+                    num1 = Convert.ToInt32(getDigits(input()));
+                    output("So, what to subtract?");
+                    num2 = Convert.ToInt32(getDigits(input()));
+                    output($"Meow~, I got the answer! It should be {num1 - num2} ~~");
+                    break;
+
+                case string s when s.Contains("mul"):
+                    output("kkk, mulipulation is a easy case la~ Now give me the 1st number plz~");
+                    num1 = Convert.ToInt32(getDigits(input()));
+                    output("okay, not that difficult~ What is the next number?");
+                    num2 = Convert.ToInt32(getDigits(input()));
+                    output($"Wait ah~ The result must be {num1 * num2}! Genuis!");
+                    break;
+
+                case string s when s.Contains("div"):
+                    output("Hummm, division?!? Whatever, should be an easy case! Show me the 1st number plz~");
+                    num1 = Convert.ToInt32(getDigits(input()));
+                    output("Wow, what`s the next number?");
+                    num2 = Convert.ToInt32(getDigits(input()));
+                    output($"yoh! The result is {num1 / num2}! What a talented chat robot!");
+                    break;
+                
+                default:
+                    output("Are you an alien? What`s that language? Alright, nevermind... Perhaps you dont want to do calculation...");
+                    break;
+            }
+            input();
+        }
+
         static void Main(string[] args)
         {
             String key;
             userInstruction();
             introTalk();
             input();
+            calculate();
             output("Oh, wait. I am a little bit tired now. Let`s play a game to relax ourselves!");
             Thread.Sleep(80);
             ttt();
