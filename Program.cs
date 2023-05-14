@@ -31,7 +31,7 @@ namespace Chatbot
             if(tmp == "quit") {
                 output("It`s a pleasure to talk with you. Hope to see you again in the future~~");
                 output("Bye~~~");
-                Environment.Exit(0);
+                Environment.Exit(0); 
             }  
             return tmp;
         }
@@ -146,10 +146,11 @@ namespace Chatbot
             Console.WriteLine("------------------------- Instruction -------------------------\n" +
                               "\t1. Enter 'quit' to quit the chat.\n" +
                               "\t2. Try to use some keywords for better communication.\n" +
+                              "\t3. Besides the small talk. I could provide with 3 easy game~~~\n" +
                               "---------------------------------------------------------------\n");
         }
 
-        //Tic-Tac-Toe game
+
         static char[] board;
         static char player;
         static bool gameOver;
@@ -331,7 +332,6 @@ namespace Chatbot
 
             narrator("Welcome to the Number Guessing Game!");
             output("Okay~ Now, I'm thinking of a number between 1 and 100.");
-            //print a number for every 0.4s
             for (int i = 0; i < 3; i++)
             {
                 Thread.Sleep(400);
@@ -489,13 +489,17 @@ namespace Chatbot
                     ttt();
                     break;
                 default:
-                    output("Sorry, I don't know this game. I only know about guess number, guess country, and tic tac toe.");
+                    string[] str = { "Ops, that`s out of my knowledge.",
+                               "Hey, are you speaking python? Attention only English works for me!",
+                               "Your answer is out of control! Try to pick a easier game!",
+                               "Gosh, I am just a chat robot! Not the Chat GPT, okay?"};
+                    output(str[rnd.Next(0, str.Length)]);
+                    output("I only know about guess number, guess country, and tic tac toe.");
                     pickGames();
                     break;
             }
         }
 
-        //calculate the basic calculation
         static void calculate(){
             output("what  type of calculation do you want to do? (addition, subtraction, multiplication, division)");
             string type = input();
