@@ -29,6 +29,7 @@ namespace Chatbot
             Console.Write(name + ": ");
             String tmp = Console.ReadLine().Trim().ToLower();
             if(tmp == "quit") {
+                output("It`s a pleasure to talk with you. Hope to see you again in the future~~");
                 output("Bye~~~");
                 Environment.Exit(0);
             }  
@@ -556,6 +557,7 @@ namespace Chatbot
             Thread.Sleep(120);
             output("Okay, I am done with guessing number. Seems like you like the guessing. How about guess a country?");
             key = input().Contains("y") ? "Okay, let`s start!" : "So tell me what you want to play!";
+            output(key);
             if(key == "So tell me what you want to play!") pickGames();
             else guessCountry();  
         }
